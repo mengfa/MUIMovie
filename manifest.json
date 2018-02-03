@@ -129,7 +129,7 @@
 							"position": {
 								"top": "4px",
 								"left": "0",
-								"width": "25%",
+								"width": "33%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -140,11 +140,11 @@
 						}, {
 							"tag": "font",
 							"id": "indexText",
-							"text": "首页",
+							"text": "热映",
 							"position": {
 								"top": "23px",
 								"left": "0",
-								"width": "25%",
+								"width": "33%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -154,11 +154,11 @@
 						},{
 							"tag": "font",
 							"id": "newsIcon",
-							"text": "\ue201",
+							"text": "\ue466",
 							"position": {
 								"top": "4px",
-								"left": "20%",
-								"width": "25%",
+								"left": "33%",
+								"width": "34%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -169,11 +169,11 @@
 						}, {
 							"tag": "font",
 							"id": "newsText",
-							"text": "消息",
+							"text": "榜单",
 							"position": {
 								"top": "23px",
-								"left": "20%",
-								"width": "25%",
+								"left": "33%",
+								"width": "34%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -183,11 +183,11 @@
 						},{
 							"tag": "font",
 							"id": "contactIcon",
-							"text": "\ue100",
+							"text": "\ue502",
 							"position": {
 								"top": "4px",
-								"left": "55%",
-								"width": "25%",
+								"left": "67%",
+								"width": "33%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -198,40 +198,11 @@
 						}, {
 							"tag": "font",
 							"id": "contactText",
-							"text": "通讯录",
+							"text": "设置",
 							"position": {
 								"top": "24px",
-								"left": "55%",
-								"width": "25%",
-								"height": "24px"
-							},
-							"textStyles": {
-								"align": "center",
-								"size": "10px"
-							}
-						},{
-							"tag": "font",
-							"id": "newwindowIcon",
-							"text": "\ue6c9",
-							"position": {
-								"top": "4px",
-								"left": "75%",
-								"width": "25%",
-								"height": "24px"
-							},
-							"textStyles": {
-								"fontSrc": "_www/fonts/iconfont.ttf",
-								"align": "center",
-								"size": "24px"
-							}
-						}, {
-							"tag": "font",
-							"id": "newwindowText",
-							"text": "新窗口",
-							"position": {
-								"top": "24px",
-								"left": "75%",
-								"width": "25%",
+								"left": "67%",
+								"width": "33%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -239,6 +210,9 @@
 								"size": "10px"
 							}
 						},
+						
+						
+						
 						{
 							"tag": "rect",
 							"id": "tabBorder",

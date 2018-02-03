@@ -80,7 +80,7 @@ var util = {
 		util.updateSubNView(currIndex, util.options.ACTIVE_COLOR);
 		util.updateSubNView(currIndex + 1, util.options.ACTIVE_COLOR);
 		// 重绘兄弟tag 反之排除当前点击的icon和text
-		for(var i = 0; i < 8; i++) {
+		for(var i = 0; i < 6; i++) {
 			if(i !== currIndex && i !== currIndex + 1) {
 				util.updateSubNView(i, util.options.NORMAL_COLOR);
 			}
