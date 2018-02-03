@@ -110,7 +110,7 @@
 	"plus": {
 		"launchwebview": {
 			"bottom": "0px",
-			"background": "#fff",
+			
 			"subNViews": [
 				{
 					"id": "tabBar",
@@ -119,7 +119,7 @@
 						"left": "0",
 						"height": "50px",
 						"width": "100%",
-						"backgroundColor": "#fff"
+						"backgroundColor": "#f7f7f7"
 					},
 					"tags": [
 						{
@@ -357,11 +357,13 @@
 					"fonts/mui.ttf",
 					"fonts/iconfont.ttf",
 					"html/tab-webview-subpage-chat.html",
-					"js/util.js"
+					"js/util.js",
+					"html/main-billboard.html"
 				],
 				"refer": [
 					"html/tab-webview-subpage-contact.html",
-					"html/new-webview.html"
+					"html/new-webview.html",
+					"html/main-setting.html"
 				],
 				"priority": 0
 			},
