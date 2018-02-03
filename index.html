@@ -8,9 +8,24 @@
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
+			
 			html,
 			body {
-				background-color: #efeff4;
+				background-color: white;
+			}
+			
+			.wrap-search {
+				margin: 15px;
+				background: #E6E6E6;
+				height: 30px;
+				border-radius: 5px;
+				text-align: center;
+			}
+			
+			.item-img {
+				width: 60px;
+				height: 90px;
+				margin-right: 10px;
 			}
 			
 			
@@ -19,6 +34,10 @@
 
 	<body>
 		<div class="mui-content">
+			<div class="wrap-search">
+				<span class="mui-icon mui-icon-search" style="line-height: 30px;color: #AAAAAA;font-size: 16px;"></span>
+				<span style="line-height: 30px;color: #AAAAAA;font-size: 14px;">电影/电视剧/影人</span>
+			</div>
 			
 		</div>
 
@@ -82,6 +101,13 @@
 							activePage = targetPage;
 						} 
 					});
+				});
+				//给搜索框添加点击事件
+				mui('.wrap-search')[0].addEventListener('tap', function() {
+					
+							console.log('click');
+				
+				
 				});
 			})();
 		</script>
