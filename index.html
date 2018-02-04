@@ -40,7 +40,7 @@
 				<span class="mui-icon mui-icon-search" style="line-height: 30px;color: #AAAAAA;font-size: 16px;"></span>
 				<span style="line-height: 30px;color: #AAAAAA;font-size: 14px;">电影/电视剧/影人</span>
 			</div>
-			<div class="mui-scroll-wrapper" style="top: 50px;">
+			<div id="refreshContainer" class="mui-scroll-wrapper" style="top: 50px;">
 				<div class="mui-scroll">
 					<ul id="movies" class="mui-table-view">
 						<li class="mui-table-view-cell" v-for="item in movies">
@@ -82,8 +82,49 @@
 			
 			(function() {
 				mui.init({
-					swipeBack: true //启用右滑关闭功能
+					swipeBack: true, //启用右滑关闭功能
+					pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						auto: false, //可选,默认false.首次加载自动下拉刷新一次
+						callback: refreshData //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					},
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: loadMoreData //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}					
 				});
+				
+				//刷新数据，重新调用接口
+			function refreshData() {
+				//请求热映列表接口
+				mui.getJSON('https://api.douban.com/v2/movie/in_theaters', {
+					start:0,
+					count:10
+				}, function(resp) {
+					data_movies.movies.splice(0,data_movies.movies.length);
+					data_movies.movies = data_movies.movies.concat(convert(resp.subjects));
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+					mui('#refreshContainer').pullRefresh().refresh(true);
+				});
+			}
+			//请求下一页数据
+			function loadMoreData(){
+				//请求热映列表接口
+				mui.getJSON('https://api.douban.com/v2/movie/in_theaters', {
+					start:data_movies.movies.length,
+					count:10
+				}, function(resp) {
+					data_movies.movies = data_movies.movies.concat(convert(resp.subjects));
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh(data_movies.movies.length > resp.total);
+				});
+			}
+
+
 				mui.plusReady(function() {
 					var self = plus.webview.currentWebview();
 					
@@ -146,10 +187,7 @@
 				
 				
 				});
-				mui.getJSON('https://api.douban.com/v2/movie/in_theaters',{},function(resp){
-					data_movies.movies = convert(resp.subjects);
-					
-				});
+				
 				
 			})();
 			
