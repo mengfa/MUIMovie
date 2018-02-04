@@ -7,6 +7,8 @@
 		<title>首页</title>
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
 		<style>
 			
 			html,
@@ -38,11 +40,46 @@
 				<span class="mui-icon mui-icon-search" style="line-height: 30px;color: #AAAAAA;font-size: 16px;"></span>
 				<span style="line-height: 30px;color: #AAAAAA;font-size: 14px;">电影/电视剧/影人</span>
 			</div>
+			<div class="mui-scroll-wrapper" style="top: 50px;">
+				<div class="mui-scroll">
+					<ul id="movies" class="mui-table-view">
+						<li class="mui-table-view-cell" v-for="item in movies">
+							<img class="mui-pull-left item-img" :src="item.cover" />
+							<div class="mui-ellipsis dark-big">
+								{{item.title}}
+							</div>
+							<div class="mui-ellipsis">
+								<span class="gray-small">{{item.geners}}</span>&nbsp;
+								<span v-if="item.score>0" class="orange-small">{{item.score}}分</span>
+								<span v-else class="orange-small">暂无评分</span>
+							</div>
+							<div class="mui-ellipsis gray-small">
+								导演:{{item.directors}}
+							</div>
+							<div class="mui-ellipsis gray-small">
+								主演:{{item.casts}}
+							</div>
+							
+						</li>
+					</ul>
+				</div>
+				
+			</div>
 			
 		</div>
 
 		<script src="js/util.js"></script>
+		<script src="js/vue.min.js"></script>
 		<script type="text/javascript">
+			//Vue数据
+			var data_movies = new Vue({
+				el: '#movies',
+				data: {
+					movies: []
+				}
+			});
+			
+			
 			(function() {
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
@@ -109,7 +146,50 @@
 				
 				
 				});
+				mui.getJSON('https://api.douban.com/v2/movie/in_theaters',{},function(resp){
+					data_movies.movies = convert(resp.subjects);
+					
+				});
+				
 			})();
+			
+			
+			//数据转换
+			function convert(items) {
+				var newItems = [];
+				//遍历items
+				items.forEach(function(item) {
+					var genres = item.genres.toString().replace(/,/g, ' / ');
+					//导演
+					var directors = '';
+					for(var i = 0; i < item.directors.length; i++) {
+						directors += item.directors[i].name;
+						if(i != item.directors.length - 1) {
+							directors += ' / ';
+						}
+					}
+					//演员
+					var casts = '';
+					for(var i = 0; i < item.casts.length; i++) {
+						casts += item.casts[i].name;
+						if(i != item.casts.length - 1) {
+							casts += ' / ';
+						}
+					}
+
+					newItems.push({
+						id: item.id,
+						title: item.title,
+						genres: genres,
+						cover: item.images.large,
+						score: item.rating.average,
+						directors: directors,
+						casts: casts
+					});
+				});
+
+				return newItems;
+			}
 		</script>
 	</body>
 
