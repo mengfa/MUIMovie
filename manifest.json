@@ -363,7 +363,8 @@
 				"refer": [
 					"html/tab-webview-subpage-contact.html",
 					"html/new-webview.html",
-					"html/main-setting.html"
+					"html/main-setting.html",
+					"html/movie-detail.html"
 				],
 				"priority": 0
 			},

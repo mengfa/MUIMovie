@@ -42,8 +42,8 @@
 			</div>
 			<div id="refreshContainer" class="mui-scroll-wrapper" style="top: 50px;">
 				<div class="mui-scroll">
-					<ul id="movies" class="mui-table-view">
-						<li class="mui-table-view-cell" v-for="item in movies">
+					<ul id="movies" class="mui-table-view">						
+						<li class="mui-table-view-cell" v-for="item in movies" @tap="open_detail(item)">
 							<img class="mui-pull-left item-img" :src="item.cover" />
 							<div class="mui-ellipsis dark-big">
 								{{item.title}}
@@ -179,6 +179,26 @@
 							activePage = targetPage;
 						} 
 					});
+							//预加载电影详情页面
+					detailPage = mui.preload({
+				
+					url:'./html/movie-detail.html',
+					id:'movie-detail'
+					});
+			
+					mui.plusReady(function(){
+					setTimeout(function(){
+					var array = plus.webview.all();
+					if(array){
+					for(var i=0,len=array.length;i<len;i++){
+			    	console.log(array[i].getURL());
+		        	}
+					}
+					},5000)
+					});
+					
+					
+					
 				});
 				//给搜索框添加点击事件
 				mui('.wrap-search')[0].addEventListener('tap', function() {
@@ -187,15 +207,28 @@
 				
 				
 				});
+		
+			
 				
 				
 			})();
 			
-			//预加载电影详情页面
-			var detailPage = mui.preload({
-				id:'movie-detail',
-				url:'./html/movie-detail.html'
-			});
+			
+			
+					//打开电影详情页面
+			function open_detail(item){
+				console.log(detailPage);
+				//触发详情页面的movieId事件
+				mui.fire(detailPage,'movieId',{
+					id:item.id
+				});
+				//打开
+				mui.openWindow({
+					id:'movie-detail'
+				});
+			}
+			
+			
 			
 			
 			//数据转换

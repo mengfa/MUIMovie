@@ -17,7 +17,8 @@
 			"html/tab-webview-subpage-about.html",
 			"html/new-webview.html",
 			"html/main-setting.html",
-			"html/main-billboard.html"
+			"html/main-billboard.html",
+			"html/movie-detail.html"
 		]
 	},
 	"launch.html": {
