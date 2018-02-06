@@ -18,7 +18,8 @@
 			"html/new-webview.html",
 			"html/main-setting.html",
 			"html/main-billboard.html",
-			"html/movie-detail.html"
+			"html/movie-detail.html",
+			"html/search.html"
 		]
 	},
 	"launch.html": {
@@ -82,6 +83,11 @@
 	"html/main-billboard.html": {
 		"refer": [
 			"html/billboard-top.html"
+		]
+	},
+	"html/search.html": {
+		"refer": [
+			"html/search-result.html"
 		]
 	}
 }

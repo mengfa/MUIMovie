@@ -364,7 +364,8 @@
 					"html/tab-webview-subpage-contact.html",
 					"html/new-webview.html",
 					"html/main-setting.html",
-					"html/movie-detail.html"
+					"html/movie-detail.html",
+					"html/search.html"
 				],
 				"priority": 0
 			},
@@ -437,6 +438,13 @@
 				"resources": [],
 				"refer": [
 					"html/billboard-top.html"
+				],
+				"priority": 0
+			},
+			"html/search.html": {
+				"resources": [],
+				"refer": [
+					"html/search-result.html"
 				],
 				"priority": 0
 			}

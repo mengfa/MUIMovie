@@ -191,12 +191,13 @@
 					
 				});
 				//给搜索框添加点击事件
-				mui('.wrap-search')[0].addEventListener('tap', function() {
-					
-							console.log('click');
-				
-				
+			mui('.wrap-search')[0].addEventListener('tap', function() {
+				mui.openWindow({
+					id:'search',
+					url:'./html/search.html'
 				});
+			});
+
 		
 			
 				
