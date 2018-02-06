@@ -11,10 +11,37 @@
 		<style>
 			html,
 			body {
-				background-color: #efeff4;
+				background-color: white;
 			}
 			
+			.group {
+				display: flex;
+				flex-flow: row nowrap;
+				flex: 1 1 0;
+				height: 200px;
+				text-align: center;
+			}
 			
+			.item {
+				width: 50%;
+				height: 100%;
+				padding: 15px;
+			}
+			
+			.billboard {
+				width: 100%;
+				height: 100%;
+				line-height: 100%;
+				border-radius: 5px;
+				display: table;
+			}
+			
+			.billboard-title {
+				color: white;
+				font-size: 18px;
+				display: table-cell;
+				vertical-align: middle;
+			}
 		</style>
 	</head>
 
@@ -63,6 +90,23 @@
 					<div class="mui-indicator"></div>
 				</div>
 			</div>
+			<div class="group">
+				<div class="item">
+					<div id="billboard_top" class="billboard" style="background: linear-gradient(#941AE6,#F1E0FC);background: -webkit-gradient(#941AE6,#F1E0FC);">
+						<span class="billboard-title">
+							豆瓣Top250
+						</span>
+					</div>
+				</div>
+				<div class="item">
+					<div id="billboard_box" class="billboard" style="background: linear-gradient(#3370CC,#CEE1FD);background: -webkit-gradient(#3370CC,#CEE1FD);">
+						<span class="billboard-title">
+							北美票房榜
+						</span>
+					</div>
+				</div>
+			</div>
+			
 			
 				
 		</div>
