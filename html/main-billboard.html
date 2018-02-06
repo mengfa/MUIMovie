@@ -106,15 +106,115 @@
 					</div>
 				</div>
 			</div>
+			<div class="dark-medium" style="margin-left: 15px;">
+				即将上映
+			</div>
+			<ul id="movies" class="mui-table-view">
+			        <li class="mui-table-view-cell" v-for="item in movies">
+			            <a>
+			                <img :src="item.cover" class="mui-pull-left" style="width: 60px;height: 90px;margin-right: 10px;" />
+			                <div>
+			                		<div class="dark-big mui-ellipsis">{{item.title}}</div>
+			                		<div>
+			                			<span class="gray-small mui-ellipsis">{{item.genres}}</span>&nbsp;
+			                		<span v-if="item.score > 0" class="orange-small">{{item.score}}分</span>
+			                		<span v-else="" class="orange-small">暂无评分</span>
+			                		</div>
+			                		<div class="gray-small mui-ellipsis">
+			                			导演：{{item.directors}}
+			                		</div>
+			                		<div class="gray-small mui-ellipsis">
+			                			主演：{{item.casts}}
+			                		</div>
+			                </div>
+			                <button type="button" class="mui-btn mui-btn-warning mui-btn-outlined">想看</button>
+			            </a>
+			        </li>
+			    </ul>
+		
 			
 			
 				
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script>
 			mui.init();
 			mui('.mui-slider').slider({
 				interval: 3000 //自动轮播周期 默认0，这里3s
+			});
+			
+			//vue对象，数据
+			var data_movies = new Vue({
+				el:'#movies',
+				data:{
+					movies:[]
+				}
+			});
+			
+			mui.getJSON('http://api.douban.com/v2/movie/coming_soon',{
+				start:0,
+				count:10
+			},function(resp){
+				console.log('获取数据')
+				data_movies.movies = data_movies.movies.concat(convert(resp.subjects));
+			})
+			
+			//数据格式转换
+			function convert(items){
+				var newItems = [];
+				//遍历
+				items.forEach(function(item){
+					var genres = item.genres.toString().replace(/,/g,' / ');
+					var directors = '';
+					for(var i=0;i<item.directors.length;i++){
+						directors += item.directors[i].name;
+						if(i != item.directors.length - 1){
+							directors += ' / ';
+						}
+					}
+					var casts = '';
+					for(var i=0;i<item.casts.length;i++){
+						casts += item.casts[i].name;
+						if(i != item.casts.length - 1){
+							casts += ' / ';
+						}
+					}
+					newItems.push({
+						id:item.id,
+						title:item.title,
+						genres:genres,
+						cover:item.images.large,
+						score:item.rating.average,
+						directors:directors,
+						casts:casts
+					});
+				});
+				return newItems;
+			}
+			
+			//给Top250添加点击事件
+			mui('#billboard_top')[0].addEventListener('tap',function(){
+				mui.openWindow({
+					url:'./billboard-top.html',
+					id:'billboard-top',
+					waiting:{
+						autoShow:true,
+						title:'正在加载...'
+					}
+				});
+			});
+			
+			//给北美票房榜添加点击事件
+			mui('#billboard_box')[0].addEventListener('tap',function(){
+				mui.openWindow({
+					url:'./billboard-box.html',
+					id:'billboard-box',
+					waiting:{
+						autoShow:true,
+						title:'正在加载...'
+					}
+				});
 			});
 			
 		
