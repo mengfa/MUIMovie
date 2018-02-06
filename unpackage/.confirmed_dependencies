@@ -73,5 +73,10 @@
 			"fonts/mui.ttf"
 		],
 		"refer": []
+	},
+	"html/movie-detail.html": {
+		"refer": [
+			"html/cast-detail.html"
+		]
 	}
 }

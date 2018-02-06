@@ -425,6 +425,13 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/movie-detail.html": {
+				"resources": [],
+				"refer": [
+					"html/cast-detail.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
