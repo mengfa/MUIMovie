@@ -432,6 +432,13 @@
 					"html/cast-detail.html"
 				],
 				"priority": 0
+			},
+			"html/main-billboard.html": {
+				"resources": [],
+				"refer": [
+					"html/billboard-top.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
